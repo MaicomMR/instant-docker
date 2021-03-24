@@ -1,0 +1,28 @@
+version: '3.2'
+networks:
+  laravel:
+services:
+  app:
+    build: .
+    container_name: app
+    restart: unless-stopped
+    tty: true
+    volumes:
+      - ./src:/var/www
+      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - laravel
+  nginx:
+    image: nginx:stable
+    container_name: nginx
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8090:80"
+      - "448:443"
+    volumes:
+      - ./src:/var/www
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - laravel
+    
