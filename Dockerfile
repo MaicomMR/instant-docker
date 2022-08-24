@@ -14,7 +14,9 @@ RUN apt-get update && apt-get install -y \
     git \
     curl \
     libonig-dev \
-    libzip-dev
+    libzip-dev \
+    nodejs npm
+
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 # Install extensions
@@ -34,6 +36,6 @@ RUN useradd -u 1000 -ms /bin/bash -g www www
 # Copy existing application directory permissions
 #COPY --chown=www:www . /var/www
 # Change current user to www
-USER www
+USER 1000
 EXPOSE 9000
 ENTRYPOINT ["php-fpm"]
