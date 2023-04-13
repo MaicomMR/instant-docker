@@ -1,0 +1,7 @@
+map $app_name $container_name {
+  default "$app_name";
+}
+
+map $app_port $container_port {
+  default "$app_name";
+}
