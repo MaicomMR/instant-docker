@@ -13,7 +13,7 @@ services:
     tty: true
     volumes:
       - ./:/var/www
-      - ./local-config/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+      - ./.local-config/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - laravel
     depends_on:
@@ -28,7 +28,7 @@ services:
       - "448:443"
     volumes:
       - ./:/var/www
-      - ./local-config/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./.local-config/nginx/default.conf:/etc/nginx/conf.d/default.conf
     networks:
       - laravel
     environment:
@@ -47,7 +47,7 @@ services:
         MYSQL_DATABASE: '${DB_DATABASE}'
         MYSQL_ALLOW_EMPTY_PASSWORD: 0
     volumes:
-        - ./local-config/database:/var/lib/mysql
+        - ./.local-config/database:/var/lib/mysql
     networks:
         - laravel
     healthcheck:
