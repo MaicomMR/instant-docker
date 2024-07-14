@@ -7,8 +7,6 @@ services:
   app:
     build: .
     container_name: '${APP_NAME}'
-    env_file:
-      - ./src/.env
     restart: unless-stopped
     tty: true
     volumes:
